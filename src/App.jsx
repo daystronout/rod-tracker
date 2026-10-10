@@ -397,7 +397,7 @@ const globalCss = `
     gap: 0.6rem;
   }
 
-  .btn {
+ .btn {
     padding: 0.7rem 1.2rem;
     border-radius: 12px;
     font-weight: 600;
@@ -409,7 +409,9 @@ const globalCss = `
     color: var(--text-muted);
     display: flex;
     align-items: center;
+    justify-content: center;   
     gap: 0.5rem;
+    font-family: inherit;      
   }
 
   .btn:hover {
@@ -524,16 +526,18 @@ const globalCss = `
     animation: scaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .modal-icon {
+    .modal-icon {
     color: #ef4444;
     margin-bottom: 1.5rem;
     display: inline-block;
+    animation: shake 0.6s ease-in-out 0.35s;
   }
 
-  .modal-title {
+ .modal-title {
     font-size: 1.4rem;
     margin-bottom: 0.8rem;
     font-weight: 700;
+    color: var(--text-color);
   }
 
   .modal-text {
@@ -581,6 +585,15 @@ const globalCss = `
   @keyframes scaleUp {
     from { transform: scale(0.9); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0) rotate(0); }
+    15%      { transform: translateX(-6px) rotate(-10deg); }
+    30%      { transform: translateX(6px) rotate(8deg); }
+    45%      { transform: translateX(-5px) rotate(-6deg); }
+    60%      { transform: translateX(4px) rotate(4deg); }
+    75%      { transform: translateX(-2px) rotate(-2deg); }
   }
 
   /* ==================================================
@@ -935,7 +948,6 @@ export default function App() {
         isDarkMode ? "dark" : "light",
       );
 
-      // Update body class for background color sync outside the container if needed
       document.body.style.backgroundColor = isDarkMode ? "#111827" : "#fafafa";
     }
   }, [progress, isDarkMode, isLoaded]);
@@ -1097,7 +1109,7 @@ export default function App() {
                   Cancel
                 </button>
                 <button className="btn btn-confirm" onClick={resetProgress}>
-                  Confirm Reset
+                  Confirm
                 </button>
               </div>
             </div>
